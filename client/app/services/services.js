@@ -9,6 +9,9 @@ angular.module('shortly.services', [])
     })
     .then(function (resp) {
       return resp.data;
+    })
+    .catch(function (error) {
+      console.error(error);
     });
 
   };
@@ -22,6 +25,9 @@ angular.module('shortly.services', [])
     .then(function (resp) {
       resp.status = 201;
       return resp;
+    })
+    .catch(function (error) {
+      console.error(error);
     });
   };
 
