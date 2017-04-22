@@ -1,7 +1,7 @@
 'use strict';
 
 describe('ShortenController', function () {
-  var $scope, $rootScope, $location, createController, $httpBackend, Links;
+  var $scope, $rootScope, $location, createController, $httpBackend, Links, $window;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
@@ -11,6 +11,7 @@ describe('ShortenController', function () {
     // mock out our dependencies
     $rootScope = $injector.get('$rootScope');
     $httpBackend = $injector.get('$httpBackend');
+    $window = $injector.get('$window');
     Links = $injector.get('Links');
     $location = $injector.get('$location');
 
@@ -22,6 +23,7 @@ describe('ShortenController', function () {
       return $controller('ShortenController', {
         $scope: $scope,
         Links: Links,
+        $window: $window,
         $location: $location
       });
     };
@@ -47,4 +49,17 @@ describe('ShortenController', function () {
     $scope.addLink();
     $httpBackend.flush();
   });
+  
+  it('should have a signout method', function () {
+    createController();
+    expect($scope.signout).to.be.a('function');
+  });
+
+  it('should delete token in localStorage after signout', function () {
+    createController();
+    $scope.signout();
+    expect($window.localStorage.getItem('com.shortly')).to.equal(null);
+  });
+
+
 });

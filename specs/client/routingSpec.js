@@ -31,4 +31,8 @@ describe('Routing', function () {
     expect($route.routes['/shorten'].controller).to.equal('ShortenController');
     expect($route.routes['/shorten'].templateUrl).to.equal('app/shorten/shorten.html');
   });
+
+  it('Should have /* route', function() {
+    expect($route.routes['/']).to.be.defined;
+  });
 });

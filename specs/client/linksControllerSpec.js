@@ -1,7 +1,7 @@
 'use strict';
 
 describe('LinksController', function () {
-  var $scope, $rootScope, createController, Links, $httpBackend;
+  var $scope, $rootScope, createController, Links, $httpBackend, $window;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
@@ -11,6 +11,7 @@ describe('LinksController', function () {
     // mock out our dependencies
     $rootScope = $injector.get('$rootScope');
     $httpBackend = $injector.get('$httpBackend');
+    $window = $injector.get('$window');
     Links = $injector.get('Links');
     $scope = $rootScope.$new();
 
@@ -19,7 +20,8 @@ describe('LinksController', function () {
     createController = function () {
       return $controller('LinksController', {
         $scope: $scope,
-        Links: Links
+        Links: Links,
+        $window: $window
       });
     };
 
@@ -50,4 +52,16 @@ describe('LinksController', function () {
 
     expect($scope.data.links).to.deep.equal(mockLinks);
   });
+
+  it('should have a signout method', function () {
+    createController();
+    expect($scope.signout).to.be.a('function');
+  });
+
+  it('should delete token in localStorage after signout', function () {
+    createController();
+    $scope.signout();
+    expect($window.localStorage.getItem('com.shortly')).to.equal(null);
+  });
+
 });
