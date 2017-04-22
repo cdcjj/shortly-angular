@@ -1,10 +1,15 @@
 <div id='container'>
   <h1>Shorten</h1>
-  <a href="#/links">Want to see all Shortened Links? <strong>CLICK ME!</strong> ...</a>
   <div ng-controller='ShortenController'>
-    <div> {{link}} </div>
+    <form name="shortenForm" ng-submit='addLink(link)'>
+      <label>Link to Shorten:</label>
+      <input class='text' type='url' name="shorten" ng-model='link.url' required>
+      <p ng-show="shortenForm.shorten.$error.url" class="help-block">Not a Valid URL, don't forget to use http://</p>
+      <button>Add Link</button>
+      <img class='spinner' src='assets/spiffygif_46x46.gif'>
+      <div>{{message}}</div>
+    </form>
     <button ng-click='signout()'>signout</button>
+    <div class='message'></div>
   </div>
 </div>
-
-

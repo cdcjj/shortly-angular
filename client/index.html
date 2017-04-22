@@ -7,13 +7,18 @@
   </head>
   <body>
     <h1>Shortly</h1>
+    <div class='navigation'>
+      <ul>
+        <li><a href='#/links'>Links</a></li>
+        <li><a href="#/shorten">Shorten</a></li>
+      </ul>
+    </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <div ng-view></div>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-messages/angular-messages.js"></script>
 
     <script src="app/auth/auth.js"></script>
     <script src="app/links/links.js"></script>

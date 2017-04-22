@@ -43,7 +43,7 @@ angular.module('shortly', [
         }
       }
     })
-    .otherwise({redirectTo: '/signin'});
+    .otherwise({redirectTo: '/links'});
     // Your code here
 
     // We add our $httpInterceptor into the array

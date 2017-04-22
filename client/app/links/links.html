@@ -1,8 +1,13 @@
 <div id='container'>
-  <h1>Links</h1>
-  <a href="#/shorten">Want to Shorten a Link? <strong>Shorten</strong> ...</a>
-  <div ng-controller = "LinksController">
-    <div>{{data.links}}</div>
+  <input type='text' name='filter' placeholder='filter'>
+  <div ng-controller = "LinksController" class="info">
+    <div ng-repeat="link in data.links" class='link'>
+      <img src='/assets/redirect_icon.png'/>
+      <div class='visits'><span class='count'>{{link.visits}}</span>  Visits</div>
+      <div class='title'>{{link.title}}</div>
+      <div class='original'>{{link.url}}</div>
+      <a ng-href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+    </div>
     <button ng-click='signout()'>signout</button>
   </div>
 </div>

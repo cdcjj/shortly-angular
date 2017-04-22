@@ -146,3 +146,20 @@ input[type=url]:focus {
   clear: both;
 }
 
+.help-block {
+  color: red;
+  font-style: italic;
+}
+
+input.ng-invalid, input.ng-touched {
+  background-color: pink;
+}
+input.ng-valid, input.ng-touched {
+  background-color: lightgreen;
+}
+
+button {
+  padding:10px;
+  margin: 10px 10px;
+  border-radius: 4px;
+}
