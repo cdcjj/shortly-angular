@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, $location, $window, Links, Auth) {
+.controller('LinksController', function ($scope, $location, Links, Auth) {
   $scope.data = {};
   $scope.signout = function() {
     Auth.signout();

@@ -9,6 +9,5 @@ angular.module('shortly.shorten', [])
   $scope.addLink = function (link) {
     Links.addOne(link);
     $scope.message = 'successfully submitted';
-    document.shortenForm.reset();
   };
 });
