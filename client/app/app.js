@@ -3,7 +3,6 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
-  'ngMessages',
   'ngRoute'
 ])
 .config(function ($routeProvider, $httpProvider) {
@@ -18,13 +17,33 @@ angular.module('shortly', [
     })
     .when('/links', {
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      resolve: {
+        'check': function($location, Auth) {
+          console.log('in resolve check function');
+          if (!Auth.isAuth()) {
+            $location.path('/signin');
+          } else {
+            console.log('is Authorized');
+          }
+        }
+      }
     })
     .when('/shorten', {
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
+      controller: 'ShortenController',
+      resolve: {
+        'check': function($location, Auth) {
+          console.log('in resolve check function');
+          if (!Auth.isAuth()) {
+            $location.path('/signin');
+          } else {
+            console.log('is Authorized');
+          }
+        }
+      }
     })
-    .otherwise({redirectTo: '/links'});
+    .otherwise({redirectTo: '/signin'});
     // Your code here
 
     // We add our $httpInterceptor into the array

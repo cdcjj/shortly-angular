@@ -1,17 +1,12 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, $location, Links, Auth) {
+.controller('LinksController', function ($scope, $location, $window, Links, Auth) {
   $scope.data = {};
-  
-  if (Auth.isAuth()) {
-    Links.getAll()
-      .then(function (links) {
-        $scope.data.links = links;
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  } else {
-    $location.path('/signin');
-  }
+  $scope.signout = function() {
+    Auth.signout();
+  };
+  Links.getAll()
+    .then(function (links) {
+      $scope.data.links = links;
+    });
 });
